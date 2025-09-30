@@ -2,7 +2,7 @@ with
 
 source as (
 
-    select * from {{ source('sec_filings', 'submissions') }}
+    select * from {{ source('sec_filings', 'raw_submissions') }}
 
 ),
 
