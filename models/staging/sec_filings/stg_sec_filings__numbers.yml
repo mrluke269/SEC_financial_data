@@ -1,0 +1,37 @@
+models:
+- name: stg_sec_filings__numbers
+  description: This model processes and renames columns from the raw SEC filings numbers
+    data, providing a structured format for financial reporting analysis.
+  columns:
+  - name: submission_id
+    description: A unique identifier for each SEC filing submission.
+  - name: concept_name
+    description: The name of the financial concept being reported.
+  - name: taxonomy_version
+    description: The version of the taxonomy used for the financial concept.
+  - name: reporting_date
+    description: The date on which the financial data is reported.
+  - name: fiscal_quarters_covered
+    description: The number of fiscal quarters covered by the financial data.
+  - name: unit_of_measure
+    description: The unit of measure for the reported financial value.
+  - name: dimension_header
+    description: The header for the dimension associated with the financial data.
+  - name: is_primary_axis
+    description: Indicates whether the dimension is the primary axis.
+  - name: reported_value
+    description: The financial value reported in the SEC filing.
+  - name: footnote_text
+    description: The text of any footnotes associated with the financial data.
+  - name: footnote_length
+    description: The length of the footnote text.
+  - name: dimension_name
+    description: The name of the dimension associated with the financial data.
+  - name: co_reporting_entity
+    description: The entity that is co-reporting the financial data.
+  - name: duration_period
+    description: The duration period for which the financial data is reported.
+  - name: date_point
+    description: The specific date point for the financial data.
+  - name: decimal_precision
+    description: The number of decimal places used in the reported financial value.
