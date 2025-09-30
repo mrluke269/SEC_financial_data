@@ -1,0 +1,24 @@
+models:
+- name: stg_sec_filings__raw_tag
+  description: This model processes raw SEC filing tags to provide a structured format
+    for analysis. It includes details about the concept name, taxonomy version, and
+    other attributes of the tags, facilitating financial data analysis and reporting.
+  columns:
+  - name: concept_name
+    description: The name of the financial reporting concept.
+  - name: taxonomy_version
+    description: The version of the taxonomy used for the concept.
+  - name: is_custom_tag
+    description: Indicates whether the tag is a custom tag.
+  - name: is_abstract_tag
+    description: Indicates whether the tag is abstract.
+  - name: data_type
+    description: The data type of the concept.
+  - name: item_order
+    description: The order of the item in the financial statement.
+  - name: debit_credit_indicator
+    description: Indicates whether the concept is a debit or credit.
+  - name: display_label
+    description: The label used for display purposes.
+  - name: documentation
+    description: Documentation or description of the concept.
