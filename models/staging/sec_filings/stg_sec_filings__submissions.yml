@@ -1,0 +1,85 @@
+models:
+- name: stg_sec_filings__submissions
+  description: This model processes raw SEC filing submissions. Contains submission-level data for all SEC filings.
+  columns:
+  - name: submission_id
+    description: Unique identifier for each SEC filing submission.
+  - name: company_id
+    description: Unique identifier for the company associated with the filing.
+  - name: company_name
+    description: Name of the company as reported in the filing.
+  - name: industry_code
+    description: Standard Industrial Classification (SIC) code representing the company's
+      industry.
+  - name: business_country
+    description: Country where the company's business is located.
+  - name: business_state
+    description: State where the company's business is located.
+  - name: business_city
+    description: City where the company's business is located.
+  - name: business_zip
+    description: ZIP code for the company's business location.
+  - name: business_address_line_1
+    description: First line of the company's business address.
+  - name: business_address_line_2
+    description: Second line of the company's business address, if applicable.
+  - name: business_phone
+    description: Phone number for the company's business location.
+  - name: mailing_country
+    description: Country for the company's mailing address.
+  - name: mailing_state
+    description: State for the company's mailing address.
+  - name: mailing_city
+    description: City for the company's mailing address.
+  - name: mailing_zip
+    description: ZIP code for the company's mailing address.
+  - name: mailing_address_line_1
+    description: First line of the company's mailing address.
+  - name: mailing_address_line_2
+    description: Second line of the company's mailing address, if applicable.
+  - name: incorporation_country
+    description: Country where the company is incorporated.
+  - name: incorporation_state
+    description: State where the company is incorporated.
+  - name: tax_id
+    description: Tax identification number for the company.
+  - name: former_names
+    description: List of former names the company has used.
+  - name: name_change_date
+    description: Date when the company last changed its name.
+  - name: accelerated_filer_status
+    description: Indicates if the company is an accelerated filer.
+  - name: well_known_issuer_flag
+    description: Indicates if the company is a well-known seasoned issuer.
+  - name: fiscal_year_end
+    description: End date of the company's fiscal year.
+  - name: form_type
+    description: Type of form filed with the SEC.
+  - name: reporting_period_end
+    description: End date of the reporting period covered by the filing.
+  - name: fiscal_year
+    description: Fiscal year for the filing.
+  - name: fiscal_period
+    description: Fiscal period for the filing.
+  - name: filed_date
+    description: Date when the filing was submitted to the SEC.
+  - name: accepted_date
+    description: Date when the filing was accepted by the SEC.
+  - name: previous_report_flag
+    description: Indicates if the filing is a previous report.
+  - name: detail_flag
+    description: Indicates if the filing contains detailed information.
+  - name: instance_document
+    description: Reference to the instance document associated with the filing.
+  - name: related_company_count
+    description: Number of related companies mentioned in the filing.
+  - name: related_company_ids
+    description: Identifiers for related companies mentioned in the filing.
+  - name: public_float_usd
+    description: Public float value in USD as reported in the filing.
+  - name: float_date
+    description: Date associated with the public float value.
+  - name: float_axis
+    description: Axis used for the public float value.
+  - name: float_members
+    description: Members associated with the public float value.
