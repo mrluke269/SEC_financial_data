@@ -1,0 +1,13 @@
+version: 2
+
+sources:
+  - name: sec_filings
+    database: raw
+    schema: SEC_FINANCIALS
+    tables:
+      - name: raw_submissions
+        description: "Contains submission-level data for all SEC filings."
+      - name: raw_numbers
+        description: "Contains all numeric data from financial statements."
+      - name: raw_tags
+        description: "Contains definitions for financial reporting tags."
