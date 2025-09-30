@@ -1,7 +1,7 @@
 models:
 - name: stg_sec_filings__numbers
   description: This model processes and renames columns from the raw SEC filings numbers
-    data, providing a structured format for financial reporting analysis.
+    data. Contains all numeric data from financial statements. The Grain is each SEC filing submission.
   columns:
   - name: submission_id
     description: A unique identifier for each SEC filing submission.

@@ -1,8 +1,6 @@
 models:
 - name: stg_sec_filings__tag
-  description: This model processes raw SEC filing tags to provide a structured format
-    for analysis. It includes details about the concept name, taxonomy version, and
-    other attributes of the tags, facilitating financial data analysis and reporting.
+  description: This model processes raw SEC filing tags. Contains definitions for financial reporting tags.
   columns:
   - name: concept_name
     description: The name of the financial reporting concept.

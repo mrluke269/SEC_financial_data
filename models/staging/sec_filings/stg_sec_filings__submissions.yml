@@ -1,8 +1,6 @@
 models:
 - name: stg_sec_filings__submissions
-  description: This model processes raw SEC filing submissions to provide a structured
-    view of company information, including identifiers, addresses, and filing details.
-    It is used to analyze company filings and track changes over time.
+  description: This model processes raw SEC filing submissions. Contains submission-level data for all SEC filings.
   columns:
   - name: submission_id
     description: Unique identifier for each SEC filing submission.
