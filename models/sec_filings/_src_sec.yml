@@ -9,5 +9,5 @@ sources:
         description: "Contains submission-level data for all SEC filings."
       - name: raw_numbers
         description: "Contains all numeric data from financial statements."
-      - name: raw_tags
+      - name: raw_tag
         description: "Contains definitions for financial reporting tags."
