@@ -1,0 +1,71 @@
+version: 2
+
+models:
+  - name: fct_financial_metrics
+    description: "Fact table containing all reported financial metrics from SEC filings. Each row represents a unique financial metric value reported in a filing, with references to dimension tables for company, filing, concept, and date information."
+    columns:
+      - name: financial_metric_key
+        description: "Surrogate key generated from submission_id, concept_key, reporting_date, dimension_header, and dimension_name. Primary key."
+        tests:
+          - unique
+          - not_null
+      - name: submission_id
+        description: "Foreign key to dim_filing. Unique identifier for the SEC filing submission."
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_filing')
+              field: submission_id
+      - name: company_id
+        description: "Foreign key to dim_company. Identifier for the company that reported the metric."
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_company')
+              field: company_id
+      - name: concept_key
+        description: "Foreign key to dim_concept. Surrogate key identifying the financial concept being reported."
+        tests:
+          - relationships:
+              to: ref('dim_concept')
+              field: concept_key
+      - name: reporting_date
+        description: "Foreign key to dim_date. The date on which the financial data is reported."
+        tests:
+          - relationships:
+              to: ref('dim_date')
+              field: date_day
+      - name: fiscal_quarters_covered
+        description: "The number of fiscal quarters covered by the financial data."
+      - name: unit_of_measure
+        description: "The unit of measure for the reported financial value (e.g., USD, shares)."
+      - name: dimension_header
+        description: "The header for the dimension associated with the financial data (for multi-dimensional reporting)."
+      - name: is_primary_axis
+        description: "Indicates whether the dimension is the primary axis."
+      - name: reported_value
+        description: "The financial value reported in the SEC filing. This is the measure in the fact table."
+      - name: footnote_text
+        description: "The text of any footnotes associated with the financial data."
+      - name: footnote_length
+        description: "The length of the footnote text."
+      - name: dimension_name
+        description: "The name of the dimension associated with the financial data (for multi-dimensional reporting)."
+      - name: co_reporting_entity
+        description: "The entity that is co-reporting the financial data."
+      - name: duration_period
+        description: "The duration period for which the financial data is reported (for period metrics)."
+      - name: date_point
+        description: "The specific date point for the financial data (for point-in-time metrics)."
+      - name: decimal_precision
+        description: "The number of decimal places used in the reported financial value."
+      - name: form_type
+        description: "Type of form filed with the SEC (denormalized from dim_filing for easier querying)."
+      - name: fiscal_year
+        description: "Fiscal year for the filing (denormalized from dim_filing for easier querying)."
+      - name: fiscal_period
+        description: "Fiscal period for the filing (denormalized from dim_filing for easier querying)."
+      - name: reporting_period_end
+        description: "End date of the reporting period covered by the filing (denormalized from dim_filing for easier querying)."
+      - name: filed_date
+        description: "Date when the filing was submitted to the SEC (denormalized from dim_filing for easier querying)."
