@@ -1,0 +1,156 @@
+version: 2
+
+models:
+  - name: dim_company
+    description: "Company dimension table containing unique company information from SEC filings. This dimension is deduplicated by company_id, keeping the most recent company information."
+    columns:
+      - name: company_id
+        description: "Unique identifier for the company (CIK). Primary key."
+        tests:
+          - unique
+          - not_null
+      - name: company_name
+        description: "Name of the company as reported in the filing."
+      - name: industry_code
+        description: "Standard Industrial Classification (SIC) code representing the company's industry."
+      - name: business_country
+        description: "Country where the company's business is located."
+      - name: business_state
+        description: "State where the company's business is located."
+      - name: business_city
+        description: "City where the company's business is located."
+      - name: business_zip
+        description: "ZIP code for the company's business location."
+      - name: business_address_line_1
+        description: "First line of the company's business address."
+      - name: business_address_line_2
+        description: "Second line of the company's business address, if applicable."
+      - name: business_phone
+        description: "Phone number for the company's business location."
+      - name: mailing_country
+        description: "Country for the company's mailing address."
+      - name: mailing_state
+        description: "State for the company's mailing address."
+      - name: mailing_city
+        description: "City for the company's mailing address."
+      - name: mailing_zip
+        description: "ZIP code for the company's mailing address."
+      - name: mailing_address_line_1
+        description: "First line of the company's mailing address."
+      - name: mailing_address_line_2
+        description: "Second line of the company's mailing address, if applicable."
+      - name: incorporation_country
+        description: "Country where the company is incorporated."
+      - name: incorporation_state
+        description: "State where the company is incorporated."
+      - name: tax_id
+        description: "Tax identification number for the company."
+      - name: former_names
+        description: "List of former names the company has used."
+      - name: name_change_date
+        description: "Date when the company last changed its name."
+      - name: well_known_issuer_flag
+        description: "Indicates if the company is a well-known seasoned issuer."
+
+  - name: dim_filing
+    description: "SEC filing dimension table containing details about each filing submission."
+    columns:
+      - name: submission_id
+        description: "Unique identifier for each SEC filing submission. Primary key."
+        tests:
+          - unique
+          - not_null
+      - name: company_id
+        description: "Foreign key to dim_company. Identifier for the company that submitted the filing."
+        tests:
+          - not_null
+      - name: accelerated_filer_status
+        description: "Indicates if the company is an accelerated filer."
+      - name: fiscal_year_end
+        description: "End date of the company's fiscal year."
+      - name: form_type
+        description: "Type of form filed with the SEC (e.g., 10-K, 10-Q)."
+      - name: reporting_period_end
+        description: "End date of the reporting period covered by the filing."
+      - name: fiscal_year
+        description: "Fiscal year for the filing."
+      - name: fiscal_period
+        description: "Fiscal period for the filing (e.g., FY, Q1, Q2, Q3, Q4)."
+      - name: filed_date
+        description: "Date when the filing was submitted to the SEC."
+      - name: accepted_date
+        description: "Date when the filing was accepted by the SEC."
+      - name: previous_report_flag
+        description: "Indicates if the filing is a previous report."
+      - name: detail_flag
+        description: "Indicates if the filing contains detailed information."
+      - name: instance_document
+        description: "Reference to the instance document associated with the filing."
+      - name: related_company_count
+        description: "Number of related companies mentioned in the filing."
+      - name: related_company_ids
+        description: "Identifiers for related companies mentioned in the filing."
+      - name: public_float_usd
+        description: "Public float value in USD as reported in the filing."
+      - name: float_date
+        description: "Date associated with the public float value."
+      - name: float_axis
+        description: "Axis used for the public float value."
+      - name: float_members
+        description: "Members associated with the public float value."
+
+  - name: dim_concept
+    description: "Financial reporting concept dimension table containing definitions for financial reporting tags from the SEC taxonomy."
+    columns:
+      - name: concept_key
+        description: "Surrogate key generated from concept_name and taxonomy_version. Primary key."
+        tests:
+          - unique
+          - not_null
+      - name: concept_name
+        description: "The name of the financial reporting concept (e.g., Assets, Liabilities, Revenue)."
+        tests:
+          - not_null
+      - name: taxonomy_version
+        description: "The version of the taxonomy used for the concept."
+      - name: is_custom_tag
+        description: "Indicates whether the tag is a custom tag defined by the company."
+      - name: is_abstract_tag
+        description: "Indicates whether the tag is abstract (used for grouping, not reporting values)."
+      - name: data_type
+        description: "The data type of the concept (e.g., monetary, shares, text)."
+      - name: item_order
+        description: "The order of the item in the financial statement."
+      - name: debit_credit_indicator
+        description: "Indicates whether the concept has a debit or credit balance (D/C)."
+      - name: display_label
+        description: "The label used for display purposes in financial statements."
+      - name: documentation
+        description: "Documentation or description of the concept from the taxonomy."
+
+  - name: dim_date
+    description: "Date dimension table containing calendar attributes for all reporting dates in the financial metrics."
+    columns:
+      - name: date_day
+        description: "The calendar date. Primary key."
+        tests:
+          - unique
+          - not_null
+      - name: year
+        description: "Calendar year."
+      - name: quarter
+        description: "Calendar quarter (1-4)."
+      - name: month
+        description: "Calendar month (1-12)."
+      - name: day
+        description: "Day of the month (1-31)."
+      - name: day_of_week
+        description: "Day of the week (1-7, where 1 is Sunday)."
+      - name: day_of_year
+        description: "Day of the year (1-366)."
+      - name: week_of_year
+        description: "Week of the year (1-53)."
+      - name: quarter_name
+        description: "Quarter name (Q1, Q2, Q3, Q4)."
+      - name: month_name
+        description: "Full month name (January, February, etc.)."
