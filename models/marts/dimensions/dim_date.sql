@@ -3,7 +3,7 @@ with
 date_spine as (
 
     select distinct
-        reporting_date as date_day
+        TO_DATE(reporting_date::string, 'YYYYMMDD') as date_day
     from {{ ref('stg_sec_filings__numbers') }}
     where reporting_date is not null
 
